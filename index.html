@@ -340,7 +340,7 @@ html.still .plate img{animation:none}
 @property --x{syntax:'<length-percentage>';inherits:true;initial-value:50%}
 @property --y{syntax:'<length-percentage>';inherits:true;initial-value:50%}
 @property --o{syntax:'<number>';inherits:true;initial-value:0}
-.lens-head{transition:--r .45s cubic-bezier(.2,.7,.2,1),--o .3s ease,--x .2s linear,--y .2s linear}
+.lens-head{transition:--r .4s cubic-bezier(.2,.7,.2,1),--o .3s ease}
 .lens-tr{-webkit-mask-image:radial-gradient(circle var(--r,0px) at var(--x,50%) var(--y,50%),#000 84%,transparent 100%);
   mask-image:radial-gradient(circle var(--r,0px) at var(--x,50%) var(--y,50%),#000 84%,transparent 100%)}
 .lens-de{-webkit-mask-image:radial-gradient(circle var(--r,0px) at var(--x,50%) var(--y,50%),transparent 84%,#000 100%);
@@ -350,7 +350,6 @@ html.still .plate img{animation:none}
 :root{
   --tex-leather:linear-gradient(rgba(27,21,17,.84),rgba(27,21,17,.84)),url("img/tex-leather.jpg");
   --tex-cloth:url("img/tex-cloth.jpg");
-  --tex-paper:url("img/tex-paper.jpg");
 }
 </style>
 </head>
