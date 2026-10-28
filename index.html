@@ -279,6 +279,62 @@ html[lang="en"] .cvdoc .cv[lang="en"],html[lang="es"] .cvdoc .cv[lang="es"]{disp
 html.still .grain,html.still .hint em,html.still .tape .caret{animation:none}
 html.still .card .in,html.still .needle{transition:none}
 html.still #dust{display:none}
+/* ── second pass: worked surfaces instead of glow ── */
+:root{
+  --night:#1b1511; --wood:#3d2817; --velvet:#6b1d22; --ox:#44120f;
+  --cloth:#21383a; --gold:#b38b4d; --gold-hi:#e6cc8f; --cream:#ecdfc3;
+  --paper:#dccaa1; --ink:#2a1c12;
+  --tex-leather:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .08 0 0 0 0 .05 0 0 0 0 .03 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E");
+  --tex-paper:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .26 0 0 0 0 .14 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  --tex-cloth:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.02 .9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .05 0 0 0 0 .16 0 0 0 0 .16 0 0 0 .45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+}
+body{background-color:var(--night);background-image:var(--tex-leather);color:var(--cream);font-size:18px}
+#dust,.grain,.spot{display:none!important}
+h2,.name{text-shadow:none}
+h2{color:var(--gold-hi)}
+.stage{background-color:#1b1511;background-image:var(--tex-leather),radial-gradient(ellipse at 50% 35%,#3a3024 0%,#1b1511 72%)}
+.curtain{background-image:linear-gradient(180deg,#0000 80%,#0005),var(--tex-leather),repeating-linear-gradient(90deg,#4d0c0b 0,#7a2025 2.4%,#5a1418 4.6%,#2e0a0a 6.5%)}
+.valance{background-color:#4a1214;background-image:var(--tex-leather),linear-gradient(#3a0a0a,#6b1d22 70%,#4a1214);box-shadow:0 8px 18px #000a}
+.valance:after{background:radial-gradient(circle at 50% 0,#6b1d22 0 70%,transparent 72%) 0 0/60px 44px repeat-x}
+/* ribbons instead of rules */
+.act-label{display:flex;width:max-content;max-width:calc(100% - 32px);margin:0 auto 6px;padding:9px 34px;letter-spacing:.26em;
+  background-color:var(--velvet);background-image:var(--tex-paper),linear-gradient(#7a2228,#55161a);
+  border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);
+  clip-path:polygon(0 0,100% 0,calc(100% - 18px) 50%,100% 100%,0 100%,18px 50%);color:var(--gold-hi)}
+.act-label:before,.act-label:after{display:none}
+.act-label{position:relative}
+/* card table: worn green cloth with a wooden rail */
+.table{background-color:var(--cloth);background-image:var(--tex-cloth),radial-gradient(ellipse at 50% 40%,#2c4d4e 0%,transparent 75%);
+  border:14px solid var(--wood);box-shadow:inset 0 0 0 2px #b38b4d55,inset 0 0 70px #0009,0 22px 40px #0008;outline-color:#4a3420}
+.front{background-color:var(--paper);background-image:var(--tex-paper);color:var(--ink)}
+.front:before{border-color:#8a6a3a;box-shadow:inset 0 0 0 1px #8a6a3a55}
+.back{background-color:var(--velvet);background-image:var(--tex-paper);border:6px solid var(--paper)}
+.back div{background-color:var(--paper);background-image:var(--tex-paper)}
+/* the paper */
+.gazette{background-color:var(--paper);background-image:var(--tex-paper);box-shadow:0 18px 34px #0009}
+.gazette:before{content:"";position:absolute;inset:12px;border:1px solid #2a1c1266;pointer-events:none}
+.extra{background:var(--velvet);background-image:var(--tex-paper)}
+.plate .frame{background-color:var(--paper);background-image:var(--tex-paper)}
+/* brass and walnut */
+nav.plaque{background-color:#2a1c12;background-image:var(--tex-leather);border:2px solid var(--gold);border-radius:4px;box-shadow:inset 0 0 0 2px #0007,0 6px 14px #000a}
+nav.plaque a,nav.plaque button{border-radius:2px}
+nav.plaque a:hover,nav.plaque a.on,nav.plaque button[aria-pressed="true"]{background:var(--gold);color:#1b1511}
+.btn{border-style:double;border-width:3px;border-radius:0}
+.oval{box-shadow:0 0 0 2px #2a1c12,0 14px 26px #000a}
+.specimen{background-color:#3d2816;background-image:var(--tex-leather);box-shadow:0 14px 26px #000b}
+.specimen .glass{background-color:var(--cloth);background-image:var(--tex-cloth);border-color:#8a6a3a}
+.specimen .glass:after{background:linear-gradient(115deg,transparent 35%,#fff0 45%,transparent 60%)}
+.brass{background-color:#b38b4d;background-image:var(--tex-paper),linear-gradient(#d4b070,#9a7036);box-shadow:inset 0 1px #fff3,0 2px 6px #0008}
+.telegram{background-color:var(--paper);background-image:var(--tex-paper);border-top-color:var(--gold);box-shadow:0 18px 30px #0009}
+.tape{background-color:#e7d6ad;background-image:var(--tex-paper)}
+.lens-ring{box-shadow:0 0 0 3px #b38b4d55,inset 0 0 0 1px #0008;background:none;border-color:var(--gold-hi)}
+.lens-ring::after{border-color:#b38b4d66}
+.overlay .close,.close{border-radius:0;background-color:#2a1c12;background-image:var(--tex-leather)}
+.cvdoc{background-color:var(--paper);background-image:var(--tex-paper);box-shadow:0 26px 60px #000}
+.avatar{background-color:var(--velvet);background-image:var(--tex-paper);border-color:var(--gold)}
+footer{color:#b38b4d}
+/* motion: keep it, drop the shimmer */
+html.still .plate img{animation:none}
 </style>
 </head>
 <body>
