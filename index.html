@@ -203,7 +203,20 @@ html.still .mc-item{animation:none}
 .gauge svg{width:100%;max-width:170px;height:auto;overflow:visible}
 .gauge .lang{font:900 18px var(--display);color:var(--gold-hi);display:block;margin-top:4px}
 .gauge .lvl{font:13px var(--label);letter-spacing:.2em;color:var(--gold)}
-.gauge .hello{display:block;font-style:italic;color:#d9cba8;min-height:1.5em;opacity:0;transform:translateY(-4px);transition:.3s}
+.gauge .hello{display:none}
+.lens-head{display:grid;position:relative;max-width:920px;margin:.3em auto 0;text-align:center}
+.lens-head>*{grid-area:1/1}
+.lens-head h2{margin:0 0 .2em}
+.lens-tr{color:var(--gold-hi);text-shadow:0 0 30px #c9a24a55;pointer-events:none;
+  -webkit-mask-image:radial-gradient(circle var(--r,0px) at var(--x,50%) var(--y,50%),#000 92%,transparent 100%);
+  mask-image:radial-gradient(circle var(--r,0px) at var(--x,50%) var(--y,50%),#000 92%,transparent 100%)}
+.lens-ring{position:absolute;left:var(--x,50%);top:var(--y,50%);width:240px;height:240px;margin:-120px 0 0 -120px;border-radius:50%;
+  border:2px solid var(--gold-hi);opacity:var(--o,0);pointer-events:none;transition:opacity .25s;
+  background:radial-gradient(circle,#f8e7ad1a 0%,transparent 68%);
+  box-shadow:0 0 0 6px #c9a24a22,0 0 34px #f1d98e77,inset 0 0 26px #f1d98e44}
+.lens-ring::after{content:"";position:absolute;inset:14px;border-radius:50%;border:1px solid #f1d98e55}
+@media (max-width:640px){.lens-ring{width:190px;height:190px;margin:-95px 0 0 -95px}}
+@media (prefers-reduced-motion:reduce){.lens-ring{transition:none}}
 .gauge:hover .hello,.gauge:focus-within .hello,.gauge:focus .hello{opacity:1;transform:none}
 .needle{transform-origin:80px 80px;transition:transform 1.4s cubic-bezier(.3,1.6,.5,1)}
 
@@ -406,7 +419,7 @@ html.still #dust{display:none}
     </div>
     <div class="board"><a class="btn" href="https://smartcity-gateway.mangomoss-e174bc04.chilecentral.azurecontainerapps.io/SmartCityBogota/?feria=1" target="_blank" rel="noopener" data-i18n="board">BOARD THE STREETCAR · TRY IT LIVE →</a></div>
     <div class="team">
-      <p class="team-title" data-i18n="teamT">WITH MY TEAM, WHO MADE SMARTCITY BOGOTÁ</p>
+      <p class="team-title" data-i18n="teamT">WITH MY TEAM, WE BUILT SMARTCITY BOGOTÁ</p>
       <div class="members">
         <div class="member"><span class="avatar" aria-hidden="true">V</span><span class="mname">Valentina Jaramillo Valencia</span></div>
         <div class="member"><span class="avatar" aria-hidden="true">A</span><span class="mname">Alejandro Salcedo Fonseca</span></div>
@@ -451,8 +464,12 @@ html.still #dust{display:none}
 <!-- ACT V -->
 <section class="act gutter" id="tongues">
   <div class="act-label" data-i18n="act5">Act V</div>
-  <h2>Hier werden Sprachen gesprochen</h2>
-  <p class="lede" data-i18n="ledeTongues">Hover a gauge to read it in its own language.</p>
+  <div class="lens-head" id="lensHead">
+    <h2 class="lens-de">Hier werden Sprachen gesprochen</h2>
+    <h2 class="lens-tr" id="lensTr" aria-hidden="true">Tongues spoken here</h2>
+    <span class="lens-ring" aria-hidden="true"></span>
+  </div>
+  <p class="lede" data-i18n="ledeTongues">Move your cursor over the title to reveal it.</p>
   <div class="gauges">
     <div class="gauge" tabindex="0" data-v="1"><span class="hello">¡Aquí se hablan idiomas!</span><svg viewBox="0 0 160 100"></svg><span class="lang">Español</span><span class="lvl" data-i18n="native">NATIVE</span></div>
     <div class="gauge" tabindex="0" data-v=".72"><span class="hello">Tongues spoken here!</span><svg viewBox="0 0 160 100"></svg><span class="lang">English</span><span class="lvl">B2</span></div>
@@ -467,7 +484,7 @@ html.still #dust{display:none}
   <div class="act-label" data-i18n="finale">Finale</div>
   <h2 data-i18n="h2send">Send Word</h2>
   <div class="telegram">
-    <header><b data-i18n="tgName">Andean Telegraph</b><span data-i18n="tgNo">No. 2027 · URGENT</span></header>
+    <header><b data-i18n="tgName">Telegraph</b><span data-i18n="tgNo">No. 2027 · URGENT</span></header>
     <div class="meta"><span data-i18n="to">TO</span><i data-i18n="toWho">Whoever is hiring</i><span data-i18n="from">FROM</span><i>J. M. Sánchez, Bogotá</i></div>
     <div class="tape" id="tape">Seeking práctica profesional or junior role STOP AI · data · full-stack STOP Bogotá or remote STOP Available 2027 STOP Five languages STOP Reply below STOP</div>
     <div class="reply">
@@ -615,9 +632,9 @@ html.still #dust{display:none}
     s2no: 'ESPÉCIMEN N.º II · CÓDIGO ABIERTO', s2p: 'Una compañera para Minecraft que te sigue, pelea con dos ballestas y habla 16 idiomas.',
     s3no: 'ESPÉCIMEN N.º III · EXHIBIDO', s3p: 'Un juego en Unity construido sobre sistemas orientados a objetos. Seleccionado para la muestra de ingeniería de la universidad.',
     examine: 'EXAMINAR EL CÓDIGO →',
-    act5: 'Acto V', h2tongues: 'Aquí se hablan idiomas', ledeTongues: 'Pasa el mouse sobre un medidor para leerlo en su idioma.', native: 'NATIVO',
-    finale: 'Final', h2send: 'Mande un telegrama', tgName: 'Telégrafo Andino', tgNo: 'N.º 2027 · URGENTE', to: 'PARA', toWho: 'A quien esté contratando', from: 'DE',
-    teamT: 'CON MI EQUIPO, QUE HIZO SMARTCITY BOGOTÁ', copy: 'COPIAR MI CORREO', footer: '✦ FUNDADO EN BOGOTÁ · MMXXVI ✦', close: 'CERRAR ✕', print: 'IMPRIMIR O GUARDAR EN PDF'
+    act5: 'Acto V', h2tongues: 'Aquí se hablan idiomas', ledeTongues: 'Pasa el mouse sobre el título para revelarlo.', native: 'NATIVO',
+    finale: 'Final', h2send: 'Mande un telegrama', tgName: 'Telégrafo', tgNo: 'N.º 2027 · URGENTE', to: 'PARA', toWho: 'A quien esté contratando', from: 'DE',
+    teamT: 'CON MI EQUIPO, CON QUIEN HICIMOS SMARTCITY BOGOTÁ', copy: 'COPIAR MI CORREO', footer: '✦ FUNDADO EN BOGOTÁ · MMXXVI ✦', close: 'CERRAR ✕', print: 'IMPRIMIR O GUARDAR EN PDF'
   };
   const TAPE = {
     en: 'Seeking práctica profesional or junior role STOP AI · data · full-stack STOP Bogotá or remote STOP Available 2027 STOP Five languages STOP Reply below STOP',
@@ -633,6 +650,7 @@ html.still #dust{display:none}
     $$('[data-i18n]').forEach(el => { const k = el.dataset.i18n; el.innerHTML = lang === 'es' && ES[k] ? ES[k] : el.dataset.en; });
     $('#langBtn').textContent = lang === 'es' ? 'EN' : 'ES';
     if (tapeTyped || reduce) tape.innerHTML = fmtTape(TAPE[lang]);
+    document.getElementById('lensTr').textContent = lang === 'es' ? 'Aquí se hablan idiomas' : 'Tongues spoken here';
     $$('.fig').forEach(f => { if (f.dataset.done !== '0') f.textContent = (+f.dataset.count).toLocaleString(lang === 'es' ? 'es-CO' : 'en-US'); });
   }
   const fmtTape = s => s.replace(/STOP/g, '<b>STOP</b>');
@@ -680,6 +698,18 @@ html.still #dust{display:none}
   paintSound();
   sBtn.addEventListener('click', () => { S.on = !S.on; store.set('sound', S.on ? 'on' : 'off'); paintSound(); if (S.on) { S.init(); setTimeout(() => S.play('ignite'), 60); } });
   addEventListener('pointerdown', () => { if (S.on) S.init(); }, { once: true });
+
+  /* ── magic lens over the title ── */
+  (() => {
+    const lens = $('#lensHead');
+    const set = (k, v) => lens.style.setProperty(k, v);
+    lens.addEventListener('pointermove', e => {
+      const r = lens.getBoundingClientRect();
+      set('--x', (e.clientX - r.left) + 'px'); set('--y', (e.clientY - r.top) + 'px');
+      set('--r', reduce ? '0px' : '120px'); set('--o', reduce ? '0' : '1');
+    });
+    lens.addEventListener('pointerleave', () => { set('--r', '0px'); set('--o', '0'); });
+  })();
 
   /* ── gauges ── */
   $$('.gauge').forEach(g => {
