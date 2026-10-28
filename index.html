@@ -169,7 +169,12 @@ html.still .plate img{animation:none}
 .btn:active{transform:translateY(2px)}
 .gazette .btn{color:var(--ink)}
 .gazette .btn:hover{background:var(--ink);color:var(--paper)}
-.credit{font:italic 15px var(--body);text-align:center;margin-top:14px;color:#4a3a28}
+.team{margin-top:30px;padding-top:22px;border-top:3px double var(--ink);text-align:center}
+.team-title{font:15px var(--label);letter-spacing:.24em;margin:0 0 18px}
+.members{display:flex;justify-content:center;flex-wrap:wrap;gap:34px 64px}
+.member{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0}
+.avatar{width:86px;height:86px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:900 34px/1 var(--display);color:var(--gold-hi);background:var(--velvet);border:3px solid var(--gold);box-shadow:0 0 0 3px var(--paper),0 0 0 4px var(--ink)}
+.mname{font:900 19px/1.2 var(--display);color:var(--ink);text-wrap:balance}
 @media (max-width:760px){.cols{grid-template-columns:1fr}.cols>div{border-left:0;padding:0;border-top:1px solid #1d150e55;padding-top:14px;margin-top:6px}.cols>div:first-child{border-top:0}}
 
 /* ── ACT IV: cabinet ── */
@@ -323,23 +328,23 @@ html.still #dust{display:none}
   <div class="table">
     <div class="hand">
       <button class="card" style="--r:-16deg;--y:28px" type="button">
-        <div class="in"><div class="face front"><span class="ix tl">A<span>♠</span></span><span class="pip">♠</span><h3 data-i18n="c1t">Artificial Intelligence</h3><small data-i18n="c1r">THE ACE</small><span class="ix br">A<span>♠</span></span></div>
+        <div class="in"><div class="face front"><span class="ix tl">A<span>♠</span></span><span class="pip">♠</span><h3 data-i18n="c1t">Artificial Intelligence</h3><span class="ix br">A<span>♠</span></span></div>
         <div class="face back"><div><b data-i18n="c1h">AI ENGINEERING</b><span data-i18n="c1b">LLM agent with tool calling on Groq, Whisper voice input, and a rules-first router so the model never guesses.</span></div></div></div>
       </button>
       <button class="card" style="--r:-8deg;--y:8px" type="button">
-        <div class="in"><div class="face front red"><span class="ix tl">K<span>♦</span></span><span class="pip">♦</span><h3>Big Data</h3><small data-i18n="c2r">THE KING</small><span class="ix br">K<span>♦</span></span></div>
+        <div class="in"><div class="face front red"><span class="ix tl">K<span>♦</span></span><span class="pip">♦</span><h3>Big Data</h3><span class="ix br">K<span>♦</span></span></div>
         <div class="face back"><div><b data-i18n="c2h">DATA ENGINEERING</b><span data-i18n="c2b">Hadoop MapReduce over 1.55 million records, PySpark analysis, Power BI dashboards, MySQL.</span></div></div></div>
       </button>
       <button class="card" style="--r:0deg;--y:0px" type="button">
-        <div class="in"><div class="face front red"><span class="ix tl">Q<span>♥</span></span><span class="pip">♥</span><h3 data-i18n="c3t">Security</h3><small data-i18n="c3r">THE QUEEN</small><span class="ix br">Q<span>♥</span></span></div>
+        <div class="in"><div class="face front red"><span class="ix tl">Q<span>♥</span></span><span class="pip">♥</span><h3 data-i18n="c3t">Security</h3><span class="ix br">Q<span>♥</span></span></div>
         <div class="face back"><div><b>DEVSECOPS</b><span data-i18n="c3b">Semgrep, Gitleaks, Trivy and OWASP ZAP on every commit. PBKDF2 hashing and TOTP two-factor login.</span></div></div></div>
       </button>
       <button class="card" style="--r:8deg;--y:8px" type="button">
-        <div class="in"><div class="face front"><span class="ix tl">J<span>♣</span></span><span class="pip">♣</span><h3>Full-Stack</h3><small data-i18n="c4r">THE JACK</small><span class="ix br">J<span>♣</span></span></div>
+        <div class="in"><div class="face front"><span class="ix tl">J<span>♣</span></span><span class="pip">♣</span><h3>Full-Stack</h3><span class="ix br">J<span>♣</span></span></div>
         <div class="face back"><div><b data-i18n="c4h">WEB &amp; CLOUD</b><span data-i18n="c4b">Java / Jakarta EE REST APIs, vanilla JS front ends, Azure Container Apps, PWA and Android.</span></div></div></div>
       </button>
       <button class="card" style="--r:16deg;--y:28px" type="button">
-        <div class="in"><div class="face front red"><span class="ix tl">10<span>♥</span></span><span class="pip">♥</span><h3 data-i18n="c5t">Games</h3><small data-i18n="c5r">THE TEN</small><span class="ix br">10<span>♥</span></span></div>
+        <div class="in"><div class="face front red"><span class="ix tl">10<span>♥</span></span><span class="pip">♥</span><h3 data-i18n="c5t">Games</h3><span class="ix br">10<span>♥</span></span></div>
         <div class="face back"><div><b data-i18n="c5h">GAME DEVELOPMENT</b><span data-i18n="c5b">Unity and C# with object-oriented systems. Minecraft modding in Java and Fabric.</span></div></div></div>
       </button>
     </div>
@@ -375,7 +380,7 @@ html.still #dust{display:none}
     <p class="deck" data-i18n="deck">SmartCity Bogotá answers questions about the city with real data, draws the answer on the map, and listens when you speak to it.</p>
     <div class="cols">
       <div>
-        <figure class="photo"><canvas id="movie" width="600" height="340" aria-label="Moving photograph of Bogotá with the Monserrate cable car and a map pin dropping on the city"></canvas><figcaption data-i18n="photoCap">Our photograph moves: the machine finds Bogotá while the cable car climbs Monserrate.</figcaption></figure>
+        <figure class="photo"><canvas id="movie" width="600" height="340" aria-label="Moving photograph of Bogotá with the Monserrate cable car and a map pin dropping on the city"></canvas><figcaption data-i18n="photoCap">The machine interprets Bogotá: data, maps and risk, read from the city itself.</figcaption></figure>
         <p data-i18n="p1">Asked where thefts gather, the machine does not guess. It checks local rules, then server templates, and only then hands the question to a language model that consults the city's own data.</p>
         <p data-i18n="p2">Built by a team of three at the Universidad de San Buenaventura and deployed on Azure, it runs in the browser, as an installable app and on Android.</p>
       </div>
@@ -400,7 +405,13 @@ html.still #dust{display:none}
       </div>
     </div>
     <div class="board"><a class="btn" href="https://smartcity-gateway.mangomoss-e174bc04.chilecentral.azurecontainerapps.io/SmartCityBogota/?feria=1" target="_blank" rel="noopener" data-i18n="board">BOARD THE STREETCAR · TRY IT LIVE →</a></div>
-    <p class="credit" data-i18n="credit">With Valentina Jaramillo Valencia and Alejandro Salcedo Fonseca.</p>
+    <div class="team">
+      <p class="team-title" data-i18n="teamT">WITH MY TEAM, WHO MADE SMARTCITY BOGOTÁ</p>
+      <div class="members">
+        <div class="member"><span class="avatar" aria-hidden="true">V</span><span class="mname">Valentina Jaramillo Valencia</span></div>
+        <div class="member"><span class="avatar" aria-hidden="true">A</span><span class="mname">Alejandro Salcedo Fonseca</span></div>
+      </div>
+    </div>
   </article>
 </section>
 
@@ -440,14 +451,14 @@ html.still #dust{display:none}
 <!-- ACT V -->
 <section class="act gutter" id="tongues">
   <div class="act-label" data-i18n="act5">Act V</div>
-  <h2 data-i18n="h2tongues">Tongues Spoken Here</h2>
-  <p class="lede" data-i18n="ledeTongues">Hover a gauge for a greeting.</p>
+  <h2>Hier werden Sprachen gesprochen</h2>
+  <p class="lede" data-i18n="ledeTongues">Hover a gauge to read it in its own language.</p>
   <div class="gauges">
-    <div class="gauge" tabindex="0" data-v="1"><span class="hello">¡Bienvenido!</span><svg viewBox="0 0 160 100"></svg><span class="lang">Español</span><span class="lvl" data-i18n="native">NATIVE</span></div>
-    <div class="gauge" tabindex="0" data-v=".72"><span class="hello">Welcome!</span><svg viewBox="0 0 160 100"></svg><span class="lang">English</span><span class="lvl">B2</span></div>
-    <div class="gauge" tabindex="0" data-v=".55"><span class="hello">Willkommen!</span><svg viewBox="0 0 160 100"></svg><span class="lang">Deutsch</span><span class="lvl">B1</span></div>
-    <div class="gauge" tabindex="0" data-v=".55"><span class="hello">Bienvenue !</span><svg viewBox="0 0 160 100"></svg><span class="lang">Français</span><span class="lvl">B1</span></div>
-    <div class="gauge" tabindex="0" data-v=".35"><span class="hello">Benvenuto!</span><svg viewBox="0 0 160 100"></svg><span class="lang">Italiano</span><span class="lvl">A2</span></div>
+    <div class="gauge" tabindex="0" data-v="1"><span class="hello">¡Aquí se hablan idiomas!</span><svg viewBox="0 0 160 100"></svg><span class="lang">Español</span><span class="lvl" data-i18n="native">NATIVE</span></div>
+    <div class="gauge" tabindex="0" data-v=".72"><span class="hello">Tongues spoken here!</span><svg viewBox="0 0 160 100"></svg><span class="lang">English</span><span class="lvl">B2</span></div>
+    <div class="gauge" tabindex="0" data-v=".55"><span class="hello">Hier werden Sprachen gesprochen!</span><svg viewBox="0 0 160 100"></svg><span class="lang">Deutsch</span><span class="lvl">B1</span></div>
+    <div class="gauge" tabindex="0" data-v=".55"><span class="hello">Ici, on parle des langues !</span><svg viewBox="0 0 160 100"></svg><span class="lang">Français</span><span class="lvl">B1</span></div>
+    <div class="gauge" tabindex="0" data-v=".35"><span class="hello">Qui si parlano le lingue!</span><svg viewBox="0 0 160 100"></svg><span class="lang">Italiano</span><span class="lvl">A2</span></div>
   </div>
 </section>
 
@@ -578,7 +589,7 @@ html.still #dust{display:none}
   /* ── language ── */
   const ES = {
     lampText: 'ENCENDIENDO EL GAS', skip: 'SALTAR', cvShort: 'HV',
-    act1: 'Acto I · El Ingeniero', role: 'INGENIERÍA DE SISTEMAS · IA Y DATOS',
+    act1: 'Acto I · Ingeniero', role: 'INGENIERÍA DE SISTEMAS · IA Y DATOS',
     tag: 'Construyo software completo, desde la base de datos hasta la persona que lo usa.',
     papers: 'SOLICITAR MI HOJA DE VIDA', presents: 'J. M. Sánchez presenta', fiveActs: 'UN INGENIERO EN CINCO ACTOS', hint: 'DESLIZA PARA ALZAR EL TELÓN',
     act2: 'Acto II', h2hand: 'La mano que juego',
@@ -591,7 +602,7 @@ html.still #dust{display:none}
     mast: 'La Gaceta de Bogotá', price: 'PRECIO: UNA ENTREVISTA', extra: '¡EXTRA! · EDICIÓN DE PREMIACIÓN',
     headline: 'Máquina pensante de un estudiante gana Mejor Proyecto',
     deck: 'SmartCity Bogotá responde preguntas sobre la ciudad con datos reales, dibuja la respuesta en el mapa y escucha cuando le hablas.',
-    photoCap: 'Nuestra fotografía se mueve: la máquina encuentra Bogotá mientras el teleférico sube a Monserrate.',
+    photoCap: 'La máquina interpreta Bogotá: datos, mapas y riesgo, leídos de la propia ciudad.',
     p1: 'Cuando se le pregunta dónde se concentran los hurtos, la máquina no adivina. Revisa reglas locales, luego plantillas del servidor, y solo entonces pasa la pregunta a un modelo de lenguaje que consulta los datos de la ciudad.',
     p2: 'Construida por un equipo de tres en la Universidad de San Buenaventura y desplegada en Azure, funciona en el navegador, como app instalable y en Android.',
     f1: 'REGISTROS DE DELITOS REFINADOS CON HADOOP', f2: 'CAPAS ANTES DE QUE HABLE EL MODELO', f3: 'LÍNEAS DE JAVA, JS, PYTHON Y SQL',
@@ -604,9 +615,9 @@ html.still #dust{display:none}
     s2no: 'ESPÉCIMEN N.º II · CÓDIGO ABIERTO', s2p: 'Una compañera para Minecraft que te sigue, pelea con dos ballestas y habla 16 idiomas.',
     s3no: 'ESPÉCIMEN N.º III · EXHIBIDO', s3p: 'Un juego en Unity construido sobre sistemas orientados a objetos. Seleccionado para la muestra de ingeniería de la universidad.',
     examine: 'EXAMINAR EL CÓDIGO →',
-    act5: 'Acto V', h2tongues: 'Aquí se hablan idiomas', ledeTongues: 'Pasa sobre un medidor para recibir un saludo.', native: 'NATIVO',
+    act5: 'Acto V', h2tongues: 'Aquí se hablan idiomas', ledeTongues: 'Pasa el mouse sobre un medidor para leerlo en su idioma.', native: 'NATIVO',
     finale: 'Final', h2send: 'Mande un telegrama', tgName: 'Telégrafo Andino', tgNo: 'N.º 2027 · URGENTE', to: 'PARA', toWho: 'A quien esté contratando', from: 'DE',
-    copy: 'COPIAR MI CORREO', footer: '✦ FUNDADO EN BOGOTÁ · MMXXVI ✦', close: 'CERRAR ✕', print: 'IMPRIMIR O GUARDAR EN PDF'
+    teamT: 'CON MI EQUIPO, QUE HIZO SMARTCITY BOGOTÁ', copy: 'COPIAR MI CORREO', footer: '✦ FUNDADO EN BOGOTÁ · MMXXVI ✦', close: 'CERRAR ✕', print: 'IMPRIMIR O GUARDAR EN PDF'
   };
   const TAPE = {
     en: 'Seeking práctica profesional or junior role STOP AI · data · full-stack STOP Bogotá or remote STOP Available 2027 STOP Five languages STOP Reply below STOP',
