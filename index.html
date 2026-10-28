@@ -771,13 +771,32 @@ html.still .plate img{animation:none}
   /* ── magic lens over the title ── */
   (() => {
     const lens = $('#lensHead');
-    const set = (k, v) => lens.style.setProperty(k, v);
+    const ring = lens.querySelector('.lens-ring'), de = lens.querySelector('.lens-de'), tr = lens.querySelector('.lens-tr');
+    const big = () => (innerWidth <= 640 ? 150 : 220);
+    let tx = 0, ty = 0, cx = 0, cy = 0, cr = 0, on = false, raf = 0;
+    const paint = () => {
+      const k = reduce ? 1 : 0.22;
+      cx += (tx - cx) * k; cy += (ty - cy) * k;
+      cr += ((on ? big() : 0) - cr) * k;
+      const pos = `at ${cx.toFixed(1)}px ${cy.toFixed(1)}px`, r = Math.max(cr, 0).toFixed(1) + 'px';
+      const hole = `radial-gradient(circle ${r} ${pos}, #000 84%, transparent 100%)`;
+      const ringHole = `radial-gradient(circle ${r} ${pos}, transparent 84%, #000 100%)`;
+      tr.style.webkitMaskImage = tr.style.maskImage = hole;
+      de.style.webkitMaskImage = de.style.maskImage = ringHole;
+      ring.style.left = '0'; ring.style.top = '0'; ring.style.margin = '0';
+      ring.style.transform = `translate(${cx.toFixed(1)}px,${cy.toFixed(1)}px) translate(-50%,-50%) scale(${(Math.max(cr, 0) / big()).toFixed(3)})`;
+      const moving = Math.abs(tx - cx) > 0.2 || Math.abs(ty - cy) > 0.2 || Math.abs((on ? big() : 0) - cr) > 0.2;
+      raf = moving ? requestAnimationFrame(paint) : 0;
+    };
+    const kick = () => { if (!raf) raf = requestAnimationFrame(paint); };
     lens.addEventListener('pointermove', e => {
       const r = lens.getBoundingClientRect();
-      set('--x', (e.clientX - r.left) + 'px'); set('--y', (e.clientY - r.top) + 'px');
-      set('--r', reduce ? '0px' : '220px'); set('--o', reduce ? '0' : '1');
+      tx = e.clientX - r.left; ty = e.clientY - r.top;
+      if (!on) { cx = tx; cy = ty; }
+      on = true; kick();
     });
-    lens.addEventListener('pointerleave', () => { set('--r', '0px'); set('--o', '0'); });
+    lens.addEventListener('pointerleave', () => { on = false; kick(); });
+    paint();
   })();
 
   /* ── gauges ── */
