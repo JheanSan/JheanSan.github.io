@@ -3327,5 +3327,68 @@ progress();
 applyLang();
 })();
 </script>
+<script>
+/* Safety net: force final counter values if the count-up fails */
+(function () {
+  var MAP = [
+    { key: /HADOOP/i,   value: 1552503 },
+    { key: /JAVA, JS/i, value: 58700 },
+    { key: /LAYERS/i,   value: 3 },
+    { key: /TOOLS/i,    value: 24 },
+    { key: /INSPECTORS/i, value: 5 }
+  ];
+  function fmt(n) {
+    var es = (document.documentElement.lang || '').toLowerCase().indexOf('es') === 0;
+    return n.toLocaleString(es ? 'es-CO' : 'en-US');
+  }
+  function fix() {
+    var leaves = document.querySelectorAll('body *');
+    leaves.forEach(function (el) {
+      if (el.children.length) return;
+      var t = (el.textContent || '').trim();
+      if (!/^[0,.]+$/.test(t) || !/0/.test(t)) return;
+      var ctx = '';
+      if (el.nextElementSibling) ctx = el.nextElementSibling.textContent;
+      if (!ctx && el.parentElement) ctx = el.parentElement.textContent;
+      for (var i = 0; i < MAP.length; i++) {
+        if (MAP[i].key.test(ctx)) {
+          var end = MAP[i].value, t0 = null;
+          (function (node, target) {
+            function step(ts) {
+              if (t0 === null) t0 = ts;
+              var p = Math.min((ts - t0) / 1600, 1);
+              var e = 1 - Math.pow(1 - p, 3);
+              node.textContent = fmt(Math.round(target * e));
+              if (p < 1) requestAnimationFrame(step);
+              else node.textContent = fmt(target);
+            }
+            requestAnimationFrame(step);
+          })(el, end);
+          break;
+        }
+      }
+    });
+  }
+  var done = false;
+  function run() { if (!done) { done = true; fix(); } }
+  var gaz = document.querySelector('[class*="gazette"], #gazette, #act3, #iii');
+  if ('IntersectionObserver' in window && gaz) {
+    new IntersectionObserver(function (es, o) {
+      if (es[0].isIntersecting) { setTimeout(run, 1200); o.disconnect(); }
+    }, { threshold: 0.2 }).observe(gaz);
+  }
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY, h = window.innerHeight;
+    var n = Array.prototype.find.call(document.querySelectorAll('*'), function (e) {
+      return !e.children.length && /LAYERS BEFORE/i.test(e.textContent);
+    });
+    if (n) {
+      var r = n.getBoundingClientRect();
+      if (r.top < h && r.bottom > 0) setTimeout(run, 1500);
+    }
+  }, { passive: true });
+  setTimeout(function () { if (!done && window.scrollY > 0) run(); }, 6000);
+})();
+</script>
 </body>
 </html>
